@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <!-- Mengambil Font Lucu dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-pink: #ffb7c5;
+            --dark-pink: #ff8fa3;
+            --bg-pink: #fff0f3;
+            --text-color: #594a4e;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-pink);
+            background-image: radial-gradient(var(--primary-pink) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Container Utama */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Halaman (Sections) */
+        .page {
+            display: none; /* Disembunyikan secara default */
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 1. Tampilan Surat (Envelope) --- */
+        .envelope-wrapper {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: var(--white);
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(255, 183, 197, 0.4);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hiasan Pita (Coquette Style) */
+        .envelope::before {
+            content: '🎀';
+            font-size: 50px;
+            position: absolute;
+            top: -20px;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 10px;
+        }
+
+        .envelope-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dark-pink);
+            z-index: 2;
+        }
+
+        .click-hint {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--dark-pink);
+            opacity: 0.7;
+        }
+
+        /* --- 2. Isi Surat (Letter) --- */
+        .letter-paper {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            border: 2px dashed var(--primary-pink);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .letter-paper p {
+            white-space: pre-line;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--dark-pink);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            min-height: 1.2em;
+        }
+
+        /* Typewriter Cursor */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--dark-pink);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Polaroid Photo */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            margin: 20px auto;
+            max-width: 400px;
+            border: 1px solid #eee;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .polaroid span {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: #555;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn-next {
+            background: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-next:hover {
+            background: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        /* --- 3. Pertanyaan (Question) --- */
+        .question-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 183, 197, 0.5);
+            position: relative;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            color: var(--dark-pink);
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-group {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative; /* Penting untuk tombol 'No' */
+        }
+
+        .btn-yes, .btn-no {
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-yes {
+            background-color: var(--dark-pink);
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 143, 163, 0.4);
+        }
+
+        .btn-no {
+            background-color: #e0e0e0;
+            color: #555;
+            position: relative; /* Default position */
+        }
+
+        /* --- 4. Halaman Sukses (Success) --- */
+        .success-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 183, 197, 0.5);
+        }
+
+        .date-display {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dark-pink);
+            margin-top: 20px;
+            border-top: 1px solid var(--primary-pink);
+            border-bottom: 1px solid var(--primary-pink);
+            padding: 10px 0;
+            display: inline-block;
+        }
+
+        /* --- Audio Control --- */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        
+        .audio-control.playing {
+            animation: spin 3s linear infinite;
+            color: var(--dark-pink);
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 480px) {
+            .envelope { width: 250px; height: 160px; }
+            .envelope::before { font-size: 40px; top: -15px; }
+            h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Player (Hidden) -->
+    <!-- Ganti src dengan link lagu favorit kalian -->
+    <audio id="bgMusic" loop>
+        <source src="pokoknya-lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Mute/Unmute -->
+    <div class="audio-control" id="audioBtn" onclick="toggleMusic()">🔇</div>
+
+    <div class="container">
+        
+        <!-- HALAMAN 1: SURAT (ENVELOPE) -->
+        <div id="page-envelope" class="page active">
+            <div class="envelope-wrapper" onclick="startExperience()">
+                <div class="envelope">
+                    <div class="envelope-text">Untuk Kamu...</div>
+                </div>
+            </div>
+            <div class="click-hint">Klik suratnya ya! 🎀</div>
+        </div>
+
+        <!-- HALAMAN 2: ISI SURAT (HALAMAN 1) -->
+        <div id="page-letter-1" class="page">
+            <div class="letter-paper">
+                <h2></h2>
+                <h2>Hiii, Anisa Hardiani Putri! ❤️</h2>
+                <p id="text1"></p>
+                <button class="btn-next" onclick="nextPage('page-letter-2')">Lanjut Baca...</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 3: ISI SURAT (HALAMAN 2) -->
+        <div id="page-letter-2" class="page">
+            <div class="letter-paper">
+                <h2></h2>
+                <h2>Perasaanku...</h2>
+                <p id="text2"></p>
+                <button class="btn-next" onclick="nextPage('page-question')">Ada pertanyaan buat kamu...</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 4: PERTANYAAN (TEMBAK) -->
+        <div id="page-question" class="page">
+            <div class="question-box">
+                <div class="heart-icon">💖</div>
+                <h2 style="margin-top: 10px;">Would you be my girlfriend?</h2>
+                <p>Boleh ga aku jadi orang yang selalu ada di samping kamu, bikin hari-hari kamu lebih happy?</p>
+                
+                <div class="btn-group">
+                    <button class="btn-yes" onclick="acceptLove()">Of course, I would! 🥰</button>
+                    <button class="btn-no" id="btnNo" onmouseover="moveButton()" onclick="moveButton()">Sorry, but no</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 5: SUKSES -->
+        <div id="page-success" class="page">
+            <div class="success-content">
+                <div class="heart-icon">🎉</div>
+                <h2>Yyeeaayy, Thank You Yaaa❤️</h2>
+                <p>Selamat yaa, kita sudah officially taken.</p><br>
+                <p> Hiii pacarku, I Love Youuu❤️❤️❤️</p>
+                
+                <div class="date-display">
+                    Tanggal Jadian Kita <br>
+                    <span id="currentDate"></span>
+                </div>
+                
+                <button class="btn-next" onclick="nextPage('page-photo')">Mau lihat momen kita?</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 6: FOTO MOMEN KITA -->
+        <div id="page-photo" class="page">
+            <div class="letter-paper">
+                <h2></h2>
+                <h2>Momen 3 Bulan Kita 🎀</h2>
+                <p>Ga sabar buat bikin memori lebih banyak lagi sama kamu.❤️</p>
+                
+                <!-- Foto Polaroid -->
+                <div class="polaroid">
+                    <img src="https://i.ibb.co.com/2TwQJNK/Beige-Vintage-Aesthetic-Summer-Memories-Photo-Collage-1.png" alt="Beige-Vintage-Aesthetic-Summer-Memories-Photo-Collage-1">
+                    <span>Our Moment 🎀</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. Audio Control ---
+        const music = document.getElementById('bgMusic');
+        const audioBtn = document.getElementById('audioBtn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                audioBtn.innerHTML = '🔇';
+                audioBtn.classList.remove('playing');
+            } else {
+                music.play().then(() => {
+                    audioBtn.innerHTML = '🔊';
+                    audioBtn.classList.add('playing');
+                }).catch(e => console.log("Audio play error"));
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- 2. Start Experience (Play Music on First Click) ---
+        function startExperience() {
+            music.volume = 0.5; // Set volume 50%
+            music.play().then(() => {
+                isPlaying = true;
+                audioBtn.innerHTML = '🔊';
+                audioBtn.classList.add('playing');
+            }).catch(e => {
+                console.log("Autoplay blocked, waiting for interaction");
+            });
+            
+            nextPage('page-letter-1');
+            startTyping();
+        }
+
+        // --- 3. Typewriter Effect ---
+        const text1 = "Aku nulis ini biar nanti pas ngomong ga belepotan, jadi setidaknya aku udah nyiapin apa yang mau aku omongin.\n\nPas pertama kali ketemu dan kenal kamu di penempatan ini, sebenernya aku belum ada kepikiran to know you deeper. Tapi entah kenapa, rasa penasaran itu mulai muncul dari pertengahan tahun 2025. Kayaknya triggernya karena kamu orangnya beneran se-soft itu, terutama dari cara kamu nge-reach aku as your friend.\n\nSampai akhirnya di momen November 2025 kita dapet satu project bareng. Dari situ aku mulai berani buat lebih intens deketin kamu. Dan siapa juga yang nyangka, semuanya tiba-tiba ngalir aja gitu. Sampai sekarang, udah sekitar 3 bulan kita intens deket.";
+        const text2 = "Jujur, semenjak kenal kamu lebih jauh, aku ngerasa kamu orangnya seasik itu buat diajak ngobrol. Entah kenapa, tiap ngobrol sama kamu rasanya lebih tenang dan nyaman aja.\n\nSampai akhirnya perasaan ini muncul. Aku juga gatau persisnya sejak kapan, tapi yang jelas sekarang aku udah jatuh hati sama kamu. Aku sayang sama kamu, \nAnisa Hardiani Putri.\n\nAku pengen bisa ngabisin lebih banyak waktu di deket kamu, dan semoga keberadaanku juga bisa bikin kamu ngerasa bahagia.\n\nSooo, yaa… i have one special question for you.";
+        let typeInterval;
+
+        function startTyping() {
+            const p1 = document.getElementById('text1');
+            const p2 = document.getElementById('text2');
+            p1.innerHTML = '';
+            p2.innerHTML = '';
+            
+            // Reset typing for page 1
+            let i = 0;
+            clearInterval(typeInterval);
+            typeInterval = setInterval(() => {
+                if (i < text1.length) {
+                    p1.innerHTML += text1.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50); // Kecepatan mengetik
+        }
+
+        // --- 4. Navigation (Diperbarui) ---
+        function nextPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Trigger typing effect untuk halaman yang sesuai
+            if (pageId === 'page-letter-1') {
+                startTyping();
+            } else if (pageId === 'page-letter-2') {
+                startTypingText2();
+            }
+        }
+
+        // Fungsi mengetik text2
+        function startTypingText2() {
+            const p2 = document.getElementById('text2');
+            p2.innerHTML = '';
+            
+            let i = 0;
+            clearInterval(typeInterval);
+            typeInterval = setInterval(() => {
+                if (i < text2.length) {
+                    p2.innerHTML += text2.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50); // Kecepatan mengetik
+        }
+
+        // --- 5. Tombol "Tidak" (Lari-lari) ---
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo');
+            const maxWidth = window.innerWidth - btnNo.offsetWidth - 20;
+            const maxHeight = window.innerHeight - btnNo.offsetHeight - 20;
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            btnNo.style.position = 'fixed'; 
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        // --- 6. Tombol "Ya" (Terima Kasih) ---
+        function acceptLove() {
+            // Ambil tanggal hari ini
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = date.toLocaleDateString('id-ID', options);
+
+            // Masukkan tanggal ke HTML
+            document.getElementById('currentDate').innerText = dateString;
+
+            // Pindah ke halaman sukses
+            nextPage('page-success');
+            
+            // Efek confetti
+            createConfetti();
+        }
+
+        // --- 7. Efek Confetti (Kertas Warna Warni) ---
+        function createConfetti() {
+            const colors = ['#ffb7c5', '#ff8fa3', '#fff', '#ffd1dc'];
+            
+            for(let i=0; i<50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.zIndex = '9999';
+                confetti.style.borderRadius = '50%';
+                
+                // Animasi jatuh
+                confetti.animate([
+                    { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    easing: 'linear',
+                    iterations: 1
+                });
+
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
